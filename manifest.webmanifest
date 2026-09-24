@@ -1,0 +1,10 @@
+{
+  "name": "Arc Tanks",
+  "short_name": "Arc Tanks",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#070b18",
+  "theme_color": "#0d1328",
+  "description": "A turn-based artillery duel with destructible terrain and smart AI.",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

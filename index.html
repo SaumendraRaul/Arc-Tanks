@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1328" />
+  <title>Arc Tanks</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">◈</span>
+        <div><strong>ARC TANKS</strong><small>trajectory warfare</small></div>
+      </div>
+      <div class="top-actions">
+        <button id="soundBtn" class="icon-btn" aria-label="Toggle sound">🔊</button>
+        <button id="restartBtn" class="ghost-btn">Restart</button>
+      </div>
+    </header>
+
+    <section class="hud">
+      <div class="player-card p1-card">
+        <div class="player-row"><span class="dot cyan"></span><b id="p1Name">PLAYER 1</b><span id="p1HpText">150</span></div>
+        <div class="hp-track"><div id="p1Hp" class="hp-fill"></div></div>
+      </div>
+      <div class="round-card">
+        <span id="turnLabel">PLAYER 1 TURN</span>
+        <strong id="windLabel">WIND 0.0</strong>
+      </div>
+      <div class="player-card p2-card">
+        <div class="player-row"><span class="dot coral"></span><b id="p2Name">CPU</b><span id="p2HpText">150</span></div>
+        <div class="hp-track"><div id="p2Hp" class="hp-fill"></div></div>
+      </div>
+    </section>
+
+    <section class="arena-wrap">
+      <canvas id="game" width="1280" height="720" aria-label="Arc Tanks battlefield"></canvas>
+      <div id="toast" class="toast"></div>
+      <div id="banner" class="banner hidden"></div>
+
+      <div id="menu" class="menu-overlay">
+        <div class="menu-panel">
+          <p class="eyebrow">ORIGINAL ARTILLERY DUEL</p>
+          <h1>ARC <span>TANKS</span></h1>
+          <p class="lead">Read the wind. Bend the arc. Turn the landscape into evidence.</p>
+          <div class="mode-grid">
+            <button class="mode-card selected" data-mode="ai">
+              <span>⚙</span><b>VS AI</b><small>Smart ballistic opponent</small>
+            </button>
+            <button class="mode-card" data-mode="local">
+              <span>⚔</span><b>LOCAL 2P</b><small>Pass-and-play chaos</small>
+            </button>
+          </div>
+          <div id="difficultyRow" class="difficulty-row">
+            <span>AI:</span>
+            <button data-diff="rookie">Rookie</button>
+            <button class="selected" data-diff="tactician">Tactician</button>
+            <button data-diff="oracle">Oracle</button>
+          </div>
+          <button id="startBtn" class="primary-btn">DEPLOY</button>
+          <small class="menu-foot">Desktop: ← → angle · ↑ ↓ power · A/D weapon · Space fire</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-deck">
+      <div class="readout-block">
+        <span>ANGLE</span><strong id="angleReadout">45°</strong>
+        <div class="step-row"><button data-act="angleDown">−</button><button data-act="angleUp">+</button></div>
+      </div>
+      <div class="readout-block power-block">
+        <span>POWER</span><strong id="powerReadout">68</strong>
+        <input id="powerSlider" type="range" min="20" max="100" value="68" />
+      </div>
+      <div class="weapon-block">
+        <button id="prevWeapon" class="weapon-nav">‹</button>
+        <div class="weapon-card">
+          <div id="weaponIcon" class="weapon-icon">●</div>
+          <div><span>WEAPON</span><strong id="weaponName">Pulse Shell</strong><small id="weaponDesc">Reliable impact round</small></div>
+          <em id="ammoLabel">∞</em>
+        </div>
+        <button id="nextWeapon" class="weapon-nav">›</button>
+      </div>
+      <button id="fireBtn" class="fire-btn"><span>FIRE</span><small>SPACE</small></button>
+    </section>
+
+    <section class="mobile-pad" aria-label="Mobile controls">
+      <div><button data-hold="angleDown">↙</button><button data-hold="angleUp">↗</button></div>
+      <div><button data-hold="powerDown">−P</button><button data-hold="powerUp">+P</button></div>
+      <button id="mobileWeapon">WEAPON</button>
+      <button id="mobileFire" class="mobile-fire">FIRE</button>
+    </section>
+
+    <footer>ARC TANKS · no loot boxes, only questionable geometry</footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
