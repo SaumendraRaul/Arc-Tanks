@@ -1,0 +1,37 @@
+name: Apply Arc Tanks V2
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/apply-v2.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Unpack V2
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .v2/bundle.* > /tmp/arcv2.b64
+          base64 --decode /tmp/arcv2.b64 > /tmp/arcv2.tgz
+          tar -xzf /tmp/arcv2.tgz -C .
+          rm -rf .v2
+          rm -f .github/workflows/apply-v2.yml
+
+      - name: Commit V2
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Arc Tanks V2: projectile draft and visual overhaul"
+          git push
